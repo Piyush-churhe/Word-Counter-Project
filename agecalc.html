@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 80%;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Age Calculator</h1>
+    <div class="container">
+        <label for="dob-day">Day of Birth:</label><br>
+        <input type="number" id="dob-day" min="1" max="31" placeholder="DD"><br>
+
+        <label for="dob-month">Month of Birth:</label><br>
+        <input type="number" id="dob-month" min="1" max="12" placeholder="MM"><br>
+
+        <label for="dob-year">Year of Birth:</label><br>
+        <input type="number" id="dob-year" placeholder="YYYY"><br>
+
+        <button onclick="calculateAge()">Calculate Age</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateAge() {
+            let day = document.getElementById("dob-day").value;
+            let month = document.getElementById("dob-month").value;
+            let year = document.getElementById("dob-year").value;
+
+            if(day === "" || month === "" || year === "") {
+                alert("Please enter all fields");
+                return;
+            }
+
+            let dob = new Date(year, month - 1, day);
+            let diff_ms = Date.now() - dob.getTime();
+            let age_dt = new Date(diff_ms);
+
+            let age = Math.abs(age_dt.getUTCFullYear() - 1970);
+
+            document.getElementById("result").innerHTML = `Your age is ${age} years old.`;
+        }
+    </script>
+
+</body>
+</html>
