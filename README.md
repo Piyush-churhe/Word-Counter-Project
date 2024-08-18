@@ -1,1 +1,1 @@
-# CodeAlpha_Project_Java
+# Java used word counter.
